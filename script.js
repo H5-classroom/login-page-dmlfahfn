@@ -10,8 +10,16 @@ let userObjects = [
     {
         username:"durre",
         password:"durre"
+    },
+    {
+        username:"durre",
+        password:"durre"
     }
 ];
+
+// localStorage.setItem("userObjects", JSON.stringify(userObjects));
+
+// console.log(userObjects);
 
 header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
 
@@ -22,16 +30,29 @@ header.addEventListener("click", function() {
 });
 
 function startPage() {
-    content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>");
+    let logInBtn = document.createElement("button");
+    logInBtn.id = "logInBtn";
+    console.log(logInBtn.innerText);
+    logInBtn.innerText = "CLICK HERE!"
+    let loginForm = `<input type="text" id="username">
+        <input type="password" id="password">`
+    console.log(logInBtn);
+
+    logInBtn.addEventListener("click", function(){
+        console.log("click");
+        let usernameInput = document.getElementById("username").value;
+        let passwordInput = document.getElementById("password").value;
+        for (user in userObjects){
+            if (usernameInput == userObjects[user].username && passwordInput == userObjects[user].password) {
+                content.insertAdjacentHTML("beforeend", usernameInput + "<p> you are logged in!</p>")
+                console.log(username + " you are logged in!");
+            } else {
+                content.insertAdjacentHTML("beforeend", usernameInput + "<p> not found in the system!</p>")
+            }
+        }
+    });
+    content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>" + loginForm);
+    content.insertAdjacentElement("beforeend", logInBtn);
+
 };
 
-logInBtn.addEventListener("click", function(){
-    let usernameInput = document.getElementById("username").value;
-    let passwordInput = document.getElementById("password").value;
-    for (user in userObjects){
-        if (usernameInput == userObjects[user].username && passwordInput == userObjects[user].password) {
-            content.insertAdjacentHTML("beforeend", username + "<p> you are logged in!</p>")
-            console.log(username + " you are logged in!");
-        } 
-    }
-});
