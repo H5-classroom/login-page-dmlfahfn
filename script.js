@@ -44,17 +44,27 @@ function startPage() {
         let passwordInput = document.getElementById("password").value;
         for (user in userObjects){
             if (usernameInput == userObjects[user].username && passwordInput == userObjects[user].password) {
-                content.insertAdjacentHTML("beforeend", usernameInput + "<p> you are logged in!</p>")
+                content.insertAdjacentHTML("beforeend", "<p> " + usernameInput + " you are logged in!</p>")
                 console.log(username + " you are logged in!");
                 break;
             } else {
-                content.insertAdjacentHTML("beforeend", usernameInput + "<p> not found in the system!</p>")
+                content.insertAdjacentHTML("beforeend", "<p>" + usernameInput + " not found in the system!</p>")
                 break;
             }
         }
     });
     content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>" + loginForm);
     content.insertAdjacentElement("beforeend", logInBtn);
-
+    logOut();
 };
 
+function logOut(){
+    let logOutBtn = document.createElement("button");
+    logOutBtn.id = "logOutBtn";
+    console.log(logOutBtn.innerText);
+    logOutBtn.innerText = "CLICK HERE!"
+
+    logOutBtn.addEventListener("click", function(){
+        
+    });
+}
