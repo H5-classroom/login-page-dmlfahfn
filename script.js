@@ -46,8 +46,10 @@ function startPage() {
             if (usernameInput == userObjects[user].username && passwordInput == userObjects[user].password) {
                 content.insertAdjacentHTML("beforeend", usernameInput + "<p> you are logged in!</p>")
                 console.log(username + " you are logged in!");
+                break;
             } else {
                 content.insertAdjacentHTML("beforeend", usernameInput + "<p> not found in the system!</p>")
+                break;
             }
         }
     });
