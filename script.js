@@ -47,6 +47,7 @@ function startPage() {
         console.log(findUser);   
         if (findUser) { 
         content.insertAdjacentHTML("beforeend", "<p> " + usernameInput + " you are logged in!</p>")
+        logOut();
         } else{
             content.insertAdjacentHTML("beforeend", "<p>" + usernameInput + " not found in the system!</p>")
         }     
@@ -54,21 +55,35 @@ function startPage() {
     });
     content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>" + loginForm);
     content.insertAdjacentElement("beforeend", logInBtn);
-    
+
+    function logOut(){
+        content.innerHTML ="";
+         let logOutBtn = document.createElement("button");
+         logOutBtn.id = "logOutBtn";
+         console.log(logOutBtn.innerText);
+         logOutBtn.innerText = "Log Out!"
+     
+         logOutBtn.addEventListener("click", function(){
+     
+     
+         });
+     
+         content.insertAdjacentElement("beforeend", logOutBtn);
+     }
 };
 
 
-function logOut(){
-   content.innerHTML ="";
-    let logOutBtn = document.createElement("button");
-    logOutBtn.id = "logOutBtn";
-    console.log(logOutBtn.innerText);
-    logOutBtn.innerText = "Log Out!"
+// function logOut(){
+//    content.innerHTML ="";
+//     let logOutBtn = document.createElement("button");
+//     logOutBtn.id = "logOutBtn";
+//     console.log(logOutBtn.innerText);
+//     logOutBtn.innerText = "Log Out!"
 
-    logOutBtn.addEventListener("click", function(){
+//     logOutBtn.addEventListener("click", function(){
 
 
-    });
+//     });
 
-    content.insertAdjacentElement("beforeend", logOutBtn);
-}
+//     content.insertAdjacentElement("beforeend", logOutBtn);
+// }
