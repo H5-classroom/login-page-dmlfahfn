@@ -72,18 +72,3 @@ function startPage() {
      }
 };
 
-
-// function logOut(){
-//    content.innerHTML ="";
-//     let logOutBtn = document.createElement("button");
-//     logOutBtn.id = "logOutBtn";
-//     console.log(logOutBtn.innerText);
-//     logOutBtn.innerText = "Log Out!"
-
-//     logOutBtn.addEventListener("click", function(){
-
-
-//     });
-
-//     content.insertAdjacentElement("beforeend", logOutBtn);
-// }
