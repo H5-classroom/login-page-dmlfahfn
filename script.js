@@ -1,25 +1,57 @@
 const header = document.querySelector("header");
 const content = document.getElementById("content");
-const logInBtn = document.getElementById("logInBtn");
 
-let userObjects = [
+let userObjects = JSON.parse(localStorage.getItem("users")||`[
     {
-        username:"janne",
-        password:"test"
+        "username":"janne",
+        "password":"test"
     },
     {
-        username:"durre",
-        password:"durre"
+        "username":"durre",
+        "password":"durre"
     },
     {
-        username:"jaja",
-        password:"jaja"
+        "username":"jaja",
+        "password":"jaja"
     }
-];
+]`);
 
 header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
 
-header.addEventListener("click", function() {
+let register = document.createElement("button");
+header.appendChild(register);
+register.innerText = "Register!"
+
+
+register.addEventListener("click", function(){
+    console.log("klack");
+    newUser();
+
+});
+
+function newUser() {
+    let addUser = document.createElement("button");
+    addUser.id = "addUser";
+    addUser.innerText ="Add user";
+    let registerForm = `<input type="text" id="registerUsername">
+                        <input type="password" id="registerPassword">` 
+
+    addUser.addEventListener("click", function(){
+        let registerUsername = document.getElementById("registerUsername").value;
+        let registerPassword = document.getElementById("registerPassword").value;
+    
+        userObjects.push(registerUsername + registerPassword);
+        localStorage.setItem("isLoggedIn", registerUsername);
+        localStorage.setItem("users", JSON.stringify(userObjects));
+        
+        content.innerHTML= ("<p> Please register!</p>" + registerForm);
+    });
+
+};
+
+
+let h1 = document.querySelector("h1");
+h1.addEventListener("click", function() {
    content.innerHTML = "";
 
     startPage();
@@ -56,11 +88,10 @@ function startPage() {
 };
 
 function loggedInScreen(username) {
-    content.insertAdjacentHTML("beforebegin", "<p> " + username + " you are logged in!</p>")
+    content.innerHTML = ("<p> " + username + " you are logged in!</p>")
     renderLogOut();
 };
-function renderLogOut(){
-    content.innerHTML ="";
+function renderLogOut(){ 
     let logOutBtn = document.createElement("button");
     logOutBtn.id = "logOutBtn";
     console.log(logOutBtn.innerText);
@@ -71,9 +102,7 @@ function renderLogOut(){
     content.innerHTML ="";
     localStorage.removeItem("isLoggedIn");
     });
-     
-         content.insertAdjacentElement("beforeend", logOutBtn);
-         
+    content.insertAdjacentElement("beforeend", logOutBtn);
 };
 const user = localStorage.getItem("isLoggedIn");
     
