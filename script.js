@@ -17,9 +17,12 @@ let userObjects = [
     }
 ];
 
-// localStorage.setItem("userObjects", JSON.stringify(userObjects));
+localStorage.setItem("userObjects", JSON.stringify(userObjects));
+console.log(userObjects);
 
-// console.log(userObjects);
+let getUserObjects = JSON.parse(localStorage.getItem("userObjects"));
+console.log(getUserObjects);
+
 
 header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
 
