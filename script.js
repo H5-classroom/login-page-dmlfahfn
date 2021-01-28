@@ -12,8 +12,8 @@ let userObjects = [
         password:"durre"
     },
     {
-        username:"durre",
-        password:"durre"
+        username:"jaja",
+        password:"jaja"
     }
 ];
 
@@ -33,7 +33,7 @@ function startPage() {
     let logInBtn = document.createElement("button");
     logInBtn.id = "logInBtn";
     console.log(logInBtn.innerText);
-    logInBtn.innerText = "CLICK HERE!"
+    logInBtn.innerText = "Log In!"
     let loginForm = `<input type="text" id="username">
         <input type="password" id="password">`
     console.log(logInBtn);
@@ -42,29 +42,33 @@ function startPage() {
         console.log("click");
         let usernameInput = document.getElementById("username").value;
         let passwordInput = document.getElementById("password").value;
-        for (user in userObjects){
-            if (usernameInput == userObjects[user].username && passwordInput == userObjects[user].password) {
-                content.insertAdjacentHTML("beforeend", "<p> " + usernameInput + " you are logged in!</p>")
-                console.log(username + " you are logged in!");
-                break;
-            } else {
-                content.insertAdjacentHTML("beforeend", "<p>" + usernameInput + " not found in the system!</p>")
-                break;
-            }
-        }
+        
+        let findUser = userObjects.find((a) => a.username === usernameInput && a.password === passwordInput);
+        console.log(findUser);   
+        if (findUser) { 
+        content.insertAdjacentHTML("beforeend", "<p> " + usernameInput + " you are logged in!</p>")
+        } else{
+            content.insertAdjacentHTML("beforeend", "<p>" + usernameInput + " not found in the system!</p>")
+        }     
+        
     });
     content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>" + loginForm);
     content.insertAdjacentElement("beforeend", logInBtn);
-    logOut();
+    
 };
 
+
 function logOut(){
+   content.innerHTML ="";
     let logOutBtn = document.createElement("button");
     logOutBtn.id = "logOutBtn";
     console.log(logOutBtn.innerText);
-    logOutBtn.innerText = "CLICK HERE!"
+    logOutBtn.innerText = "Log Out!"
 
     logOutBtn.addEventListener("click", function(){
-        
+
+
     });
+
+    content.insertAdjacentElement("beforeend", logOutBtn);
 }
