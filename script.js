@@ -64,8 +64,8 @@ function startPage() {
          logOutBtn.innerText = "Log Out!"
      
          logOutBtn.addEventListener("click", function(){
-     
-     
+            startPage();
+            content.innerHTML ="";
          });
      
          content.insertAdjacentElement("beforeend", logOutBtn);
