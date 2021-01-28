@@ -44,9 +44,9 @@ function newUser() {
         localStorage.setItem("isLoggedIn", registerUsername);
         localStorage.setItem("users", JSON.stringify(userObjects));
         
-        content.innerHTML= ("<p> Please register!</p>" + registerForm);
     });
-
+    content.innerHTML= ("<p> Please register!</p>" + registerForm);
+    content.insertAdjacentElement("beforeend", addUser);
 };
 
 
