@@ -17,17 +17,10 @@ let userObjects = [
     }
 ];
 
-localStorage.setItem("userObjects", JSON.stringify(userObjects));
-console.log(userObjects);
-
-let getUserObjects = JSON.parse(localStorage.getItem("userObjects"));
-console.log(getUserObjects);
-
-
 header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
 
 header.addEventListener("click", function() {
-    content.innerHTML = "";
+   content.innerHTML = "";
 
     startPage();
 });
@@ -38,7 +31,7 @@ function startPage() {
     console.log(logInBtn.innerText);
     logInBtn.innerText = "Log In!"
     let loginForm = `<input type="text" id="username">
-        <input type="password" id="password">`
+                    <input type="password" id="password">`
     console.log(logInBtn);
 
     logInBtn.addEventListener("click", function(){
@@ -49,8 +42,9 @@ function startPage() {
         let findUser = userObjects.find((a) => a.username === usernameInput && a.password === passwordInput);
         console.log(findUser);   
         if (findUser) { 
-        content.insertAdjacentHTML("beforeend", "<p> " + usernameInput + " you are logged in!</p>")
-        logOut();
+            localStorage.setItem("isLoggedIn", usernameInput);
+        loggedInScreen(usernameInput);  
+
         } else{
             content.insertAdjacentHTML("beforeend", "<p>" + usernameInput + " not found in the system!</p>")
         }     
@@ -59,19 +53,31 @@ function startPage() {
     content.insertAdjacentHTML("beforeend","<p> Please Log-In!</p>" + loginForm);
     content.insertAdjacentElement("beforeend", logInBtn);
 
-    function logOut(){
-        content.innerHTML ="";
-         let logOutBtn = document.createElement("button");
-         logOutBtn.id = "logOutBtn";
-         console.log(logOutBtn.innerText);
-         logOutBtn.innerText = "Log Out!"
+};
+
+function loggedInScreen(username) {
+    content.insertAdjacentHTML("beforebegin", "<p> " + username + " you are logged in!</p>")
+    renderLogOut();
+};
+function renderLogOut(){
+    content.innerHTML ="";
+    let logOutBtn = document.createElement("button");
+    logOutBtn.id = "logOutBtn";
+    console.log(logOutBtn.innerText);
+    logOutBtn.innerText = "Log Out!"
      
-         logOutBtn.addEventListener("click", function(){
-            startPage();
-            content.innerHTML ="";
-         });
+    logOutBtn.addEventListener("click", function(){
+    startPage();
+    content.innerHTML ="";
+    localStorage.removeItem("isLoggedIn");
+    });
      
          content.insertAdjacentElement("beforeend", logOutBtn);
-     }
+         
+};
+const user = localStorage.getItem("isLoggedIn");
+    
+if (user) {
+    loggedInScreen(user);
 };
 
