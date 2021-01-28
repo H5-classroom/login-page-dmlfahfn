@@ -41,7 +41,7 @@ function newUser() {
         let registerPassword = document.getElementById("registerPassword").value;
     
         userObjects.push(registerUsername + registerPassword);
-        localStorage.setItem("isLoggedIn", registerUsername);
+        localStorage.setItem("isLoggedIn", registerUsername + registerPassword);
         localStorage.setItem("users", JSON.stringify(userObjects));
         
     });
