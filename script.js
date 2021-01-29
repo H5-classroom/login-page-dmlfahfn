@@ -53,7 +53,7 @@ function newUser() {
 
 let h1 = document.querySelector("h1");
 h1.addEventListener("click", function() {
-   content.innerHTML = "";
+   header.innerHTML = "<h1> fill in the details below: </h1>";
 
     startPage();
 });
