@@ -15,20 +15,29 @@ let userObjects = JSON.parse(localStorage.getItem("users")||`[
         "password":"jaja"
     }
 ]`);
+beginningOfPage();
+function beginningOfPage(){
+    header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
 
-header.insertAdjacentHTML("afterbegin", "<h1>Welcome! Log-In System! Click Here!</h1>");
-
-let register = document.createElement("button");
-header.appendChild(register);
-register.innerText = "Register!"
+    let register = document.createElement("button");
+    header.appendChild(register);
+    register.innerText = "Register!"
 
 
-register.addEventListener("click", function(){
-    console.log("klack");
-    newUser();
+    register.addEventListener("click", function(){
+        console.log("klack");
+        newUser();
 
+    });
+
+    let h1 = document.querySelector("h1");
+    h1.addEventListener("click", function() {
+    header.innerHTML = "<h1> fill in the details below: </h1>";
+
+    startPage();
 });
 
+};
 function newUser() {
     header.innerHTML ="<h1> Please Register yourself!</h1>";
     let addUser = document.createElement("button");
@@ -50,13 +59,6 @@ function newUser() {
     content.insertAdjacentElement("beforeend", addUser);
 };
 
-
-let h1 = document.querySelector("h1");
-h1.addEventListener("click", function() {
-   header.innerHTML = "<h1> fill in the details below: </h1>";
-
-    startPage();
-});
 
 function startPage() {
     let logInBtn = document.createElement("button");
@@ -88,7 +90,10 @@ function startPage() {
 
 };
 
+
 function loggedInScreen(username) {
+    header.innerHTML="";
+    header.insertAdjacentHTML("beforeend", "<h1> Welcome " +username+ "</h1>")
     content.innerHTML = ("<p> " + username + " you are logged in!</p>")
     renderLogOut();
 };
@@ -101,6 +106,8 @@ function renderLogOut(){
     logOutBtn.addEventListener("click", function(){
     startPage();
     content.innerHTML ="";
+    header.innerHTML="";
+    beginningOfPage();
     localStorage.removeItem("isLoggedIn");
     });
     content.insertAdjacentElement("beforeend", logOutBtn);
@@ -110,4 +117,3 @@ const user = localStorage.getItem("isLoggedIn");
 if (user) {
     loggedInScreen(user);
 };
-
