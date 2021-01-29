@@ -30,6 +30,7 @@ register.addEventListener("click", function(){
 });
 
 function newUser() {
+    header.innerHTML ="<h1> Please Register yourself!</h1>";
     let addUser = document.createElement("button");
     addUser.id = "addUser";
     addUser.innerText ="Add user";
