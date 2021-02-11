@@ -32,14 +32,14 @@ function beginningOfPage(){
 
     let h1 = document.querySelector("h1");
     h1.addEventListener("click", function() {
-    header.innerHTML = "<h1> fill in the details below: </h1>";
+    header.innerHTML = "<h1> Welcome! Log-In System! Click Here! </h1>";
 
     startPage();
 });
 
 };
 function newUser() {
-    header.innerHTML ="<h1> Please Register yourself!</h1>";
+    header.innerHTML ="<h1> Welcome! Log-In System! Register yourself!</h1>";
     let addUser = document.createElement("button");
     addUser.id = "addUser";
     addUser.innerText ="Add user";
@@ -57,8 +57,8 @@ function newUser() {
     });
     content.innerHTML= ("<p> Please register!</p>" + registerForm);
     content.insertAdjacentElement("beforeend", addUser);
+    startPage();
 };
-
 
 function startPage() {
     let logInBtn = document.createElement("button");
@@ -93,7 +93,7 @@ function startPage() {
 
 function loggedInScreen(username) {
     header.innerHTML="";
-    header.insertAdjacentHTML("beforeend", "<h1> Welcome " +username+ "</h1>")
+    header.insertAdjacentHTML("beforeend", "<h1> Welcome! Log-In System! You have logged in " +username+ "</h1>")
     content.innerHTML = ("<p> " + username + " you are logged in!</p>")
     renderLogOut();
 };
